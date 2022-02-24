@@ -7,10 +7,15 @@
 
 import Foundation
 
+struct AppKeys {
 // MARK: - Agora Tokens
-internal let agoraAppID: String = <#Agora App ID#>
-internal let agoraClientToken: String? = <#Agora Token#>
-internal let agoraChannelId: String = <#Agora Channel ID#>
+  internal static let agoraAppID: String = <#Agora App ID#>
+  internal static let agoraClientToken: String? = <#Agora Token#>
+  internal static let agoraChannelId: String = <#Agora Channel ID#>
 
-// MARK: - BanubaToken
-internal let banubaClientToken = <#Banuba Token#>
+  // MARK: - BanubaToken
+  internal static let banubaClientToken = <#Banuba Token#>
+
+  // MARK: - Agora UIKit or Without
+  internal static let withAgoraUIKit: Bool = true
+}

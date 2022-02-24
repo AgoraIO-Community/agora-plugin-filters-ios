@@ -1,116 +1,102 @@
 //
-//  ViewController.swift
+//  ViewControllerUIKit.swift
 //  BanubaAgoraFilters
 //
-//  Created by Banuba on 20.07.21.
+//  Created by Max Cobb on 24/02/2022.
 //
 
 import UIKit
 import AgoraRtcKit
+import AgoraUIKit_iOS
 import BanubaFiltersAgoraExtension
 
 private struct Defaults {
   static let renderSize = AgoraVideoDimension640x480
 }
 
-class ViewController: UIViewController {
-  
-  @IBOutlet weak var remoteVideo: UIView!
-  @IBOutlet weak var localVideo: UIView!
-  @IBOutlet weak var effectSelectorView: BanubaEffectSelectorView!
-  
-  private var agoraKit: AgoraRtcEngineKit?
+class ViewControllerUIKit: UIViewController {
+
+  var effectSelectorView: BanubaEffectSelectorView!
+
+  private var agoraUIKit: AgoraVideoViewer?
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
     setupEngine()
-    setupVideo()
-    setupLocalVideo()
     setupEffectSelectorView()
   }
-  
+
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
-    
+
     joinChannel()
     setupBanubaPlugin()
   }
-  
+
   private func setupEngine() {
     let config = AgoraRtcEngineConfig()
     config.appId = AppKeys.agoraAppID
-    
-    agoraKit = AgoraRtcEngineKit.sharedEngine(
-      with: config,
-      delegate: self
-    )
-    
-    agoraKit?.enableExtension(
-      withVendor: BanubaPluginKeys.vendorName,
-      extension: BanubaPluginKeys.extensionName,
-      enabled: true
-    )
-  }
-  
-  private func setupVideo() {
-    agoraKit?.setChannelProfile(.liveBroadcasting)
-    agoraKit?.setClientRole(.broadcaster)
-    agoraKit?.enableVideo()
-    
-    let encoderConfig = AgoraVideoEncoderConfiguration(
+
+    var agSettings = AgoraSettings()
+    agSettings.rtmEnabled = false
+    agSettings.videoConfiguration = AgoraVideoEncoderConfiguration(
       size: Defaults.renderSize,
       frameRate: .fps30,
       bitrate: AgoraVideoBitrateStandard,
       orientationMode: .adaptative,
       mirrorMode: .auto
     )
-    
-    agoraKit?.setVideoEncoderConfiguration(encoderConfig)
+    agSettings.enabledButtons = []
+
+    self.agoraUIKit = AgoraVideoViewer(
+      connectionData: AgoraConnectionData(appId: AppKeys.agoraAppID, rtcToken: AppKeys.agoraClientToken),
+      agoraSettings: agSettings,
+      delegate: self
+    )
+    self.agoraUIKit?.enableExtension(
+      withVendor: BanubaPluginKeys.vendorName,
+      extension: BanubaPluginKeys.extensionName,
+      enabled: true
+    )
+    self.agoraUIKit?.fills(view: self.view)
   }
-  
-  private func setupLocalVideo() {
-    let videoCanvas = AgoraRtcVideoCanvas()
-    // UID = 0 means we let Agora pick a UID for us
-    videoCanvas.uid = 0
-    videoCanvas.view = localVideo
-    videoCanvas.renderMode = .hidden
-    videoCanvas.mirrorMode = .disabled
-    agoraKit?.setupLocalVideo(videoCanvas)
-  }
-  
+
+
   private func joinChannel() {
-    agoraKit?.joinChannel(
-      byToken: AppKeys.agoraClientToken,
-      channelId: AppKeys.agoraChannelId,
-      info: nil,
-      uid: 0,
-      joinSuccess: { channel, uid, elapsed in
-        print("Did join channel")
-      })
-    agoraKit?.startPreview()
-    agoraKit?.setEnableSpeakerphone(true)
+    self.agoraUIKit?.join(
+      channel: AppKeys.agoraChannelId, with: AppKeys.agoraClientToken, uid: 0
+    )
+    self.agoraUIKit?.agkit.setEnableSpeakerphone(true)
   }
 }
 
-// MARK: - AgoraRtcEngineDelegate
-extension ViewController: AgoraRtcEngineDelegate {
-  func rtcEngine(_ engine: AgoraRtcEngineKit, firstRemoteVideoFrameOfUid uid: UInt, size: CGSize, elapsed: Int) {
-    setupRemoteVideo(uid: uid)
-  }
-  
-  private func setupRemoteVideo(uid: UInt) {
-    let videoCanvas = AgoraRtcVideoCanvas()
-    videoCanvas.uid = uid
-    videoCanvas.view = remoteVideo
-    videoCanvas.renderMode = .hidden
-    agoraKit?.setupRemoteVideo(videoCanvas)
+extension ViewControllerUIKit: AgoraVideoViewerDelegate {
+  func joinedChannel(channel: String) {
+    // This disables mirror mode on the local user's canvas.
+    if let userId = self.agoraUIKit?.userID,
+       let userCanvas = self.agoraUIKit?.videoLookup[userId]?.canvas {
+      userCanvas.mirrorMode = .disabled
+    }
   }
 }
+
 
 // MARK: - EffectSelectorView
-extension ViewController {
+extension ViewControllerUIKit {
   private func setupEffectSelectorView() {
+
+    self.effectSelectorView = BanubaEffectSelectorView(frame: .zero)
+    self.view.addSubview(self.effectSelectorView)
+    self.effectSelectorView.translatesAutoresizingMaskIntoConstraints = false
+    [ self.effectSelectorView.widthAnchor.constraint(
+        equalTo: self.view.safeAreaLayoutGuide.widthAnchor
+      ), self.effectSelectorView.bottomAnchor.constraint(
+        equalTo: self.view.safeAreaLayoutGuide.bottomAnchor
+      ), self.effectSelectorView.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor
+      ), self.effectSelectorView.heightAnchor.constraint(equalToConstant: 64)
+    ].forEach { $0.isActive = true }
+
     let resetEffectViewModel = EffectViewModel(
       image: UIImage(named: "no_effect")!,
       effectName: nil
@@ -118,7 +104,7 @@ extension ViewController {
     var effectViewModels = [resetEffectViewModel]
     let effectsPath = BanubaEffectsManager.effectsURL.path
     let effectsService = EffectsService(effectsPath: effectsPath)
-    
+
     effectsService
       .getEffectNames()
       .sorted()
@@ -141,35 +127,35 @@ extension ViewController {
 }
 
 // MARK: - BanubaFilterPlugin interactions
-extension ViewController {
+extension ViewControllerUIKit {
   private func setupBanubaPlugin() {
-    agoraKit?.setExtensionPropertyWithVendor(
+    self.agoraUIKit?.setExtensionProperty(
       BanubaPluginKeys.vendorName,
       extension: BanubaPluginKeys.extensionName,
       key: BanubaPluginKeys.setEffectsPath,
       value: BanubaEffectsManager.effectsURL.path
     )
-    
+
     let clientToken = AppKeys.banubaClientToken.trimmingCharacters(in: .whitespacesAndNewlines)
-    agoraKit?.setExtensionPropertyWithVendor(
+    self.agoraUIKit?.setExtensionProperty(
       BanubaPluginKeys.vendorName,
       extension: BanubaPluginKeys.extensionName,
       key: BanubaPluginKeys.setToken,
       value: clientToken
     )
   }
-  
+
   private func loadEffect(_ effectName: String) {
-    agoraKit?.setExtensionPropertyWithVendor(
+    self.agoraUIKit?.setExtensionProperty(
       BanubaPluginKeys.vendorName,
       extension: BanubaPluginKeys.extensionName,
       key: BanubaPluginKeys.loadEffect,
       value: effectName
     )
   }
-  
+
   private func unloadEffect() {
-    agoraKit?.setExtensionPropertyWithVendor(
+    self.agoraUIKit?.setExtensionProperty(
       BanubaPluginKeys.vendorName,
       extension: BanubaPluginKeys.extensionName,
       key: BanubaPluginKeys.unloadEffect,
@@ -177,3 +163,4 @@ extension ViewController {
     )
   }
 }
+

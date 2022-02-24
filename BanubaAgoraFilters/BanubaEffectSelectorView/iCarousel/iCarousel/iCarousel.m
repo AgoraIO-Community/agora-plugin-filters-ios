@@ -1511,7 +1511,7 @@ NSComparisonResult compareViewDepth(UIView *view1, UIView *view2, iCarousel *sel
     {
         
 #ifdef ICAROUSEL_IOS
-        
+
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationDuration:0.1];
         [UIView setAnimationDelegate:itemView.superview];
