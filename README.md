@@ -1,12 +1,12 @@
-Examples for [Banuba SDK on iOS] and [Agora.io](https://www.agora.io/en/) SDK integration via Agora Plugin Filters to enhance video calls with real-time face filters and virtual backgrounds.
+Examples for Banuba SDK on iOS and [Agora.io](https://www.agora.io/en/) SDK integration via Agora Plugin Filters to enhance video calls with real-time face filters and virtual backgrounds.
 
 # Getting Started
 
-1. Get
-(a)the latest Banuba SDK archive,
-(b)[BanubaFiltersAgoraExtension for iOS](https://f.hubspotusercontent10.net/hubfs/4992313/Agora_Banuba_Extension/AgoraBanubaExtension(iOS).zip),
-(c) [Banuba trial client token](https://docs.agora.io/en/extension_customer/Banuba_downloads).
-To receive a full commercial licence from Banuba - please fill in our form on [form on banuba.com](https://www.banuba.com/face-filters-sdk) website, or contact us via [info@banuba.com](mailto:info@banuba.com).
+1. Get the following:  
+(a) the latest Banuba SDK archive,  
+(b) [Banuba Extension files for iOS](https://www.banuba.com/faq/how-to-integrate-banuba-sdk-with-agora-sdk),  
+(c) Banuba trial client token.  
+To receive a trial token or a full commercial licence from Banuba - please fill in our form on [form on banuba.com](https://www.banuba.com/face-filters-sdk) website, or contact us via [info@banuba.com](mailto:info@banuba.com).
 2. Open the BanubaAgoraFilters.xcodeproj file in Xcode and delete the Banuba items from «General->Frameworks, Libraries, and Embedded Content» (do not delete AgoraRtcKit framework), and from the Frameworks folder in the BanubaAgoraFilters project structure (the left part of Xcode window).
 
 <p align="center">
@@ -18,20 +18,28 @@ To receive a full commercial licence from Banuba - please fill in our form on [f
   <img src="screenshots/screenshot_2.png" alt="Screenshot2" width="100%" height="auto">
 </p>
 
-3. Copy and Paste your Banuba client token into the appropriate section of `/BanubaAgoraFilters/Token.swift` with “ ” symbols. For example: 
+4. Copy and Paste your Banuba client token into the appropriate section of `/BanubaAgoraFilters/Token.swift` with “ ” symbols. For example: 
 ``` swift
-let banubaClientToken = “place_your_banuba_token_here”
+let banubaClientToken = "Banuba Token"
 ```
 5. Visit agora.io to sign up and get the token, app and channel ID.
 
-7. Copy and Paste your agora token, app and chanel ID into appropriate section of `/BanubaAgoraFilters/Token.swift` with “ ” symbols. For example: 
+6. Copy and Paste your agora token, app and chanel ID into appropriate section of `/BanubaAgoraFilters/Token.swift` with “ ” symbols. For example: 
 ``` swift
-internal let agoraAppID = "place_your_agora_app_id_here"
-internal let agoraClientToken = "place_your_agora_client_token_here"
-internal let agoraChannelId = "place_your_agora_channel_id_here"
+internal let agoraAppID = "Agora App ID"
+internal let agoraClientToken = "Agora Token"
+internal let agoraChannelId = "Agora Channel ID"
 ```
-8. Open the BanubaAgoraFilters.xcodporj project in Xcode and run the `BanubaAgoraFilters` target.
+7. Open the BanubaAgoraFilters.xcodporj project in Xcode and run the `BanubaAgoraFilters` target.
 
+:exclamation: If you have any problems with installing Agora frameworks with Swift Package Manager refer to this [page](https://github.com/agorabuilder/AgoraRtcEngine_iOS_Preview)
+
+# Connecting Banuba SDK and AgoraRtcKit to your own project
+
+Connecting Banuba SDK to your project is similar to the steps in the `Getting Started` section. As for AgoraRtcKit, we advise to use Swift Package Manager. You should use the following settings:  
+URL: `https://github.com/agorabuilder/AgoraRtcEngine_iOS_Preview.git`  
+Version Rule: `Exact`  
+Version: `4.0.0-preview.3`
 
 # How to use `BanubaFiltersAgoraExtension`
 
@@ -93,6 +101,31 @@ agoraKit?.setExtensionPropertyWithVendor(
 )
 ```
 
+If the mask has parameters and you want to change them, you can do it the next way:
+
+```swift
+agoraKit?.setExtensionPropertyWithVendor(
+    BanubaPluginKeys.vendorName,
+    extension: BanubaPluginKeys.extensionName,
+    key: BanubaPluginKeys.callJSMethod,
+    value: jsonString
+)      
+```
+`callJsMethod` must be a JSON string with two fields: `method` and `params`. The`method` field stands for method’s name and `params` for method’s parameters. You can find an example in our [sample](https://github.com/Banuba/agora-plugin-filters-ios/blob/main/BanubaAgoraFilters/ViewController.swift#L181).
+
+# How to build `BanubaFiltersAgoraExtension`
+
+To build the BanubaFiltersAgoraExtension manually, please follow the steps bellow:
+
+1. Launch project `/BanubaFilters/BanubaFiltersAgoraExtension.xcodeproj`.
+
+2. Choose "File->Packages->Reset Package Cashes" from Xcode menu.
+
+3. Build `BanubaFiltersAgoraExtension`. It will be built with your Swift version. After this you should open the section `Products` in the `Project Navigator` (the left part of the Xcode screen). Click on the `BanubaFiltersAgoraExtension` with the right click of the mouse and choose «Show in Finder». Copy the `BanubaFiltersAgoraExtension.framework` from the folder.
+
+4. Then put the framework to the `/Frameworks` folder of the BanubaAgoraFilters.xcodeproj (or of your project). Then you can build BanubaAgoraFilters or your project.
+
+The reconnection of the `BanubaFiltersAgoraExtension.framework` to the example project may be required. To do it, you should remove the `BanubaFiltersAgoraExtension.framework` from the Project Settings: "General-> Frameworks, Libraries and Embedded Content". Then you should drag&drop the `BanubaFiltersAgoraExtension.framework` to this section. You should choose «Embed&Sign» for this framework.
 
 # Effects managing
 
