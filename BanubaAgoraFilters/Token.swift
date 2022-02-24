@@ -14,7 +14,7 @@ struct AppKeys {
   internal static let agoraChannelId: String = <#Agora Channel ID#>
 
   // MARK: - BanubaToken
-  internal static let banubaClientToken = <#Banuba Token#>
+  internal static let banubaClientToken: String = <#Banuba Token#>
 
   // MARK: - Agora UIKit or Without
   internal static let withAgoraUIKit: Bool = true

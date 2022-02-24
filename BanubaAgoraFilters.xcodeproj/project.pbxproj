@@ -491,7 +491,7 @@
 			repositoryURL = "https://github.com/agorabuilder/AgoraRtcEngine_iOS_Preview.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = "4.0.0-preview.1";
+				minimumVersion = "4.0.0-preview.5";
 			};
 		};
 		F39DDD5F27C69140003901C7 /* XCRemoteSwiftPackageReference "iOS-UIKit" */ = {
