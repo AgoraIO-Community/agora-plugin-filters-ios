@@ -50,20 +50,20 @@ class ViewControllerUIKit: UIViewController {
     agSettings.enabledButtons = []
 
     self.agoraUIKit = AgoraVideoViewer(
-      connectionData: AgoraConnectionData(appId: AppKeys.agoraAppID, rtcToken: AppKeys.agoraClientToken),
-      agoraSettings: agSettings,
-      delegate: self
-    )
-    self.agoraUIKit?.enableExtension(
-      withVendor: BanubaPluginKeys.vendorName,
-      extension: BanubaPluginKeys.extensionName,
-      enabled: true
+      connectionData: AgoraConnectionData(
+        appId: AppKeys.agoraAppID, rtcToken: AppKeys.agoraClientToken
+      ), agoraSettings: agSettings, delegate: self
     )
     self.agoraUIKit?.fills(view: self.view)
   }
 
 
   private func joinChannel() {
+    self.agoraUIKit?.enableExtension(
+      withVendor: BanubaPluginKeys.vendorName,
+      extension: BanubaPluginKeys.extensionName,
+      enabled: true
+    )
     self.agoraUIKit?.join(
       channel: AppKeys.agoraChannelId, with: AppKeys.agoraClientToken, uid: 0
     )
