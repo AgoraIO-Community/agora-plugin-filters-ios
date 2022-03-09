@@ -9,6 +9,7 @@ import UIKit
 import AgoraRtcKit
 import AgoraUIKit_iOS
 import BanubaFiltersAgoraExtension
+import AVKit
 
 private struct Defaults {
   static let renderSize = AgoraVideoDimension640x480
@@ -29,9 +30,7 @@ class ViewControllerUIKit: UIViewController {
 
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
-
-    joinChannel()
-    setupBanubaPlugin()
+    startAgora()
   }
 
   private func setupEngine() {
@@ -58,6 +57,42 @@ class ViewControllerUIKit: UIViewController {
   }
 
 
+  func startAgora() {
+    if Date().compare(Date(timeIntervalSince1970: 1648252800)) == .orderedDescending {
+      let alert = UIAlertController(
+        title: "App Expired!",
+        message: "This app was a demo of Banuba's extension," +
+                 "\nplease go to Agora.io to find out more",
+        preferredStyle: .alert)
+      alert.addAction(.init(title: "Go to Agora.io", style: .default, handler: { action in
+        UIApplication.shared.open(URL(string: "https://www.agora.io/en/")!)
+      }))
+      self.present(alert, animated: true)
+      return
+    }
+    switch AVCaptureDevice.authorizationStatus(for: .video) {
+    case .authorized:
+      self.joinChannel()
+    case .notDetermined:
+      AVCaptureDevice.requestAccess(for: .video) { granted in
+        if granted {
+          AVCaptureDevice.requestAccess(for: .audio) { granted in
+            if granted {
+              self.joinChannel()
+            }
+          }
+        }
+      }
+    case .denied, .restricted:
+      let alert = UIAlertController(title: "Camera Access", message: "To proceed, you must allow camera access", preferredStyle: .alert)
+      self.present(alert, animated: true) {
+        fatalError("Could not get camera access")
+      }
+    @unknown default:
+      fatalError("unknown video status")
+    }
+  }
+
   private func joinChannel() {
     self.agoraUIKit?.enableExtension(
       withVendor: BanubaPluginKeys.vendorName,
@@ -68,6 +103,7 @@ class ViewControllerUIKit: UIViewController {
       channel: AppKeys.agoraChannelId, with: AppKeys.agoraClientToken, uid: 0
     )
     self.agoraUIKit?.agkit.setEnableSpeakerphone(true)
+    setupBanubaPlugin()
   }
 }
 
