@@ -46,7 +46,8 @@ class ViewControllerUIKit: UIViewController {
       orientationMode: .adaptative,
       mirrorMode: .auto
     )
-    agSettings.enabledButtons = []
+    agSettings.enabledButtons = [.micButton]
+    agSettings.buttonPosition = .right
 
     self.agoraUIKit = AgoraVideoViewer(
       connectionData: AgoraConnectionData(
