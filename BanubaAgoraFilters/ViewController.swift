@@ -39,7 +39,7 @@ class ViewController: UIViewController {
   
   private func setupEngine() {
     let config = AgoraRtcEngineConfig()
-    config.appId = agoraAppID
+    config.appId = AppKeys.agoraAppID
     
     agoraKit = AgoraRtcEngineKit.sharedEngine(
       with: config,
@@ -81,8 +81,8 @@ class ViewController: UIViewController {
   
   private func joinChannel() {
     agoraKit?.joinChannel(
-      byToken: agoraClientToken,
-      channelId: agoraChannelId,
+      byToken: AppKeys.agoraClientToken,
+      channelId: AppKeys.agoraChannelId,
       info: nil,
       uid: 0,
       joinSuccess: { channel, uid, elapsed in
@@ -98,7 +98,7 @@ extension ViewController: AgoraRtcEngineDelegate {
   func rtcEngine(_ engine: AgoraRtcEngineKit, firstRemoteVideoFrameOfUid uid: UInt, size: CGSize, elapsed: Int) {
     setupRemoteVideo(uid: uid)
   }
-  
+
   private func setupRemoteVideo(uid: UInt) {
     let videoCanvas = AgoraRtcVideoCanvas()
     videoCanvas.uid = uid
@@ -150,7 +150,7 @@ extension ViewController {
       value: BanubaEffectsManager.effectsURL.path
     )
     
-    let clientToken = banubaClientToken.trimmingCharacters(in: .whitespacesAndNewlines)
+    let clientToken = AppKeys.banubaClientToken.trimmingCharacters(in: .whitespacesAndNewlines)
     agoraKit?.setExtensionPropertyWithVendor(
       BanubaPluginKeys.vendorName,
       extension: BanubaPluginKeys.extensionName,
@@ -194,7 +194,7 @@ extension ViewController {
       agoraKit?.setExtensionPropertyWithVendor(
         BanubaPluginKeys.vendorName,
         extension: BanubaPluginKeys.extensionName,
-        key: BanubaPluginKeys.callJSMethod,
+        key: BanubaPluginKeys.evalJSMethod,
         value: jsonString
       )
     } catch {

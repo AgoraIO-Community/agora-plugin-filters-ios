@@ -16,7 +16,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
-    let viewController = ViewController(nibName: "ViewController", bundle: nil)
+    var viewController: UIViewController
+    if AppKeys.withAgoraUIKit {
+      viewController = ViewControllerUIKit()
+    } else {
+      viewController = ViewController(nibName: "ViewController", bundle: nil)
+    }
     self.window = UIWindow(frame: UIScreen.main.bounds)
     self.window?.rootViewController = viewController
     self.window?.makeKeyAndVisible()

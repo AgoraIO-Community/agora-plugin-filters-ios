@@ -1,0 +1,1 @@
+Donwload the needed effects from [here](https://docs.banuba.com/face-ar-sdk-v1/overview/demo_face_filters).

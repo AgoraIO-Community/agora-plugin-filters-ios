@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		632EE65327479F59004F9B8F /* BanubaJSMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632EE65227479F59004F9B8F /* BanubaJSMethod.swift */; };
-		63EAAE9B26DE824D00A83AD4 /* BanubaEffectPlayer.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63EAAE9726DE824D00A83AD4 /* BanubaEffectPlayer.xcframework */; };
-		63EAAE9C26DE824D00A83AD4 /* BanubaEffectPlayer.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63EAAE9726DE824D00A83AD4 /* BanubaEffectPlayer.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		63EAAEA126DE824D00A83AD4 /* BanubaFiltersAgoraExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63EAAE9A26DE824D00A83AD4 /* BanubaFiltersAgoraExtension.framework */; };
 		63EAAEA226DE824D00A83AD4 /* BanubaFiltersAgoraExtension.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63EAAE9A26DE824D00A83AD4 /* BanubaFiltersAgoraExtension.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		63EAB02D26DE830A00A83AD4 /* BanubaEffectSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EAAEA626DE830A00A83AD4 /* BanubaEffectSelectorView.swift */; };
@@ -28,7 +26,20 @@
 		63EAB03A26DE830A00A83AD4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EAAEB626DE830A00A83AD4 /* AppDelegate.swift */; };
 		63EAB1A326DE830B00A83AD4 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EAB02B26DE830A00A83AD4 /* Token.swift */; };
 		63EAB1A626DE833100A83AD4 /* effects in Resources */ = {isa = PBXBuildFile; fileRef = 63EAB1A526DE833100A83AD4 /* effects */; };
-		F355FC1B2733E6EB0056A8D9 /* AgoraRtcKit in Frameworks */ = {isa = PBXBuildFile; productRef = F355FC1A2733E6EB0056A8D9 /* AgoraRtcKit */; };
+		F350E55028E34957009E99D4 /* AgoraUIKit in Frameworks */ = {isa = PBXBuildFile; productRef = F350E54F28E34957009E99D4 /* AgoraUIKit */; };
+		F39F43A828EF43AE00384D16 /* Pods_BanubaAgoraFilters.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1967D5F320D19DC39B7B62B /* Pods_BanubaAgoraFilters.framework */; };
+		F3C0184527EA28B300F3A9E5 /* VoicemodAudioFilterExtension in Frameworks */ = {isa = PBXBuildFile; productRef = F3C0184427EA28B300F3A9E5 /* VoicemodAudioFilterExtension */; };
+		F3C9A1CA28F064C800772084 /* AINS in Frameworks */ = {isa = PBXBuildFile; productRef = F3C9A1C928F064C800772084 /* AINS */; };
+		F3C9A1CC28F064C800772084 /* AudioBeauty in Frameworks */ = {isa = PBXBuildFile; productRef = F3C9A1CB28F064C800772084 /* AudioBeauty */; };
+		F3C9A1CE28F064C800772084 /* ClearVision in Frameworks */ = {isa = PBXBuildFile; productRef = F3C9A1CD28F064C800772084 /* ClearVision */; };
+		F3C9A1D028F064C800772084 /* ContentInspect in Frameworks */ = {isa = PBXBuildFile; productRef = F3C9A1CF28F064C800772084 /* ContentInspect */; };
+		F3C9A1D228F064C800772084 /* PVC in Frameworks */ = {isa = PBXBuildFile; productRef = F3C9A1D128F064C800772084 /* PVC */; };
+		F3C9A1D428F064C800772084 /* ReplayKit in Frameworks */ = {isa = PBXBuildFile; productRef = F3C9A1D328F064C800772084 /* ReplayKit */; };
+		F3C9A1D628F064C800772084 /* RtcBasic in Frameworks */ = {isa = PBXBuildFile; productRef = F3C9A1D528F064C800772084 /* RtcBasic */; };
+		F3C9A1D828F064C800772084 /* SpatialAudio in Frameworks */ = {isa = PBXBuildFile; productRef = F3C9A1D728F064C800772084 /* SpatialAudio */; };
+		F3C9A1DA28F064C800772084 /* SuperResolution in Frameworks */ = {isa = PBXBuildFile; productRef = F3C9A1D928F064C800772084 /* SuperResolution */; };
+		F3C9A1DC28F064C800772084 /* VirtualBackground in Frameworks */ = {isa = PBXBuildFile; productRef = F3C9A1DB28F064C800772084 /* VirtualBackground */; };
+		F3E0E02127C78B0C00FAAED0 /* ViewControllerUIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E0E02027C78B0C00FAAED0 /* ViewControllerUIKit.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -39,7 +50,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				63EAAEA226DE824D00A83AD4 /* BanubaFiltersAgoraExtension.framework in Embed Frameworks */,
-				63EAAE9C26DE824D00A83AD4 /* BanubaEffectPlayer.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -49,7 +59,6 @@
 /* Begin PBXFileReference section */
 		632EE65227479F59004F9B8F /* BanubaJSMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BanubaJSMethod.swift; sourceTree = "<group>"; };
 		637C19B426A6EEAB000C647F /* BanubaAgoraFilters.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BanubaAgoraFilters.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		63EAAE9726DE824D00A83AD4 /* BanubaEffectPlayer.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = BanubaEffectPlayer.xcframework; path = Frameworks/BanubaEffectPlayer.xcframework; sourceTree = "<group>"; };
 		63EAAE9A26DE824D00A83AD4 /* BanubaFiltersAgoraExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BanubaFiltersAgoraExtension.framework; path = Frameworks/BanubaFiltersAgoraExtension.framework; sourceTree = "<group>"; };
 		63EAAEA626DE830A00A83AD4 /* BanubaEffectSelectorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BanubaEffectSelectorView.swift; sourceTree = "<group>"; };
 		63EAAEA826DE830A00A83AD4 /* LICENCE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENCE.md; sourceTree = "<group>"; };
@@ -68,6 +77,10 @@
 		63EAB02B26DE830A00A83AD4 /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		63EAB02C26DE830A00A83AD4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		63EAB1A526DE833100A83AD4 /* effects */ = {isa = PBXFileReference; lastKnownFileType = folder; path = effects; sourceTree = "<group>"; };
+		7307728837A1CC331A93FDE5 /* Pods-BanubaAgoraFilters.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BanubaAgoraFilters.release.xcconfig"; path = "Target Support Files/Pods-BanubaAgoraFilters/Pods-BanubaAgoraFilters.release.xcconfig"; sourceTree = "<group>"; };
+		C91B1A1DDB0A8FE96D0CA0D1 /* Pods-BanubaAgoraFilters.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BanubaAgoraFilters.debug.xcconfig"; path = "Target Support Files/Pods-BanubaAgoraFilters/Pods-BanubaAgoraFilters.debug.xcconfig"; sourceTree = "<group>"; };
+		E1967D5F320D19DC39B7B62B /* Pods_BanubaAgoraFilters.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BanubaAgoraFilters.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F3E0E02027C78B0C00FAAED0 /* ViewControllerUIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerUIKit.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,9 +88,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F355FC1B2733E6EB0056A8D9 /* AgoraRtcKit in Frameworks */,
+				F3C9A1D828F064C800772084 /* SpatialAudio in Frameworks */,
+				F3C9A1D228F064C800772084 /* PVC in Frameworks */,
 				63EAAEA126DE824D00A83AD4 /* BanubaFiltersAgoraExtension.framework in Frameworks */,
-				63EAAE9B26DE824D00A83AD4 /* BanubaEffectPlayer.xcframework in Frameworks */,
+				F3C0184527EA28B300F3A9E5 /* VoicemodAudioFilterExtension in Frameworks */,
+				F3C9A1CA28F064C800772084 /* AINS in Frameworks */,
+				F3C9A1CC28F064C800772084 /* AudioBeauty in Frameworks */,
+				F3C9A1D628F064C800772084 /* RtcBasic in Frameworks */,
+				F39F43A828EF43AE00384D16 /* Pods_BanubaAgoraFilters.framework in Frameworks */,
+				F3C9A1DC28F064C800772084 /* VirtualBackground in Frameworks */,
+				F3C9A1D428F064C800772084 /* ReplayKit in Frameworks */,
+				F3C9A1DA28F064C800772084 /* SuperResolution in Frameworks */,
+				F3C9A1CE28F064C800772084 /* ClearVision in Frameworks */,
+				F350E55028E34957009E99D4 /* AgoraUIKit in Frameworks */,
+				F3C9A1D028F064C800772084 /* ContentInspect in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,6 +114,7 @@
 				63EAAEA426DE830A00A83AD4 /* BanubaAgoraFilters */,
 				637C19B526A6EEAB000C647F /* Products */,
 				637C19CB26A6EF5C000C647F /* Frameworks */,
+				F25F959CEF330942B89124A5 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -104,8 +129,8 @@
 		637C19CB26A6EF5C000C647F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				63EAAE9726DE824D00A83AD4 /* BanubaEffectPlayer.xcframework */,
 				63EAAE9A26DE824D00A83AD4 /* BanubaFiltersAgoraExtension.framework */,
+				E1967D5F320D19DC39B7B62B /* Pods_BanubaAgoraFilters.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -115,6 +140,7 @@
 			children = (
 				63EAAEA526DE830A00A83AD4 /* BanubaEffectSelectorView */,
 				63EAAEAE26DE830A00A83AD4 /* ViewController.swift */,
+				F3E0E02027C78B0C00FAAED0 /* ViewControllerUIKit.swift */,
 				63EAAEAF26DE830A00A83AD4 /* ViewController.xib */,
 				63EAAEB026DE830A00A83AD4 /* Assets.xcassets */,
 				63EAB1A526DE833100A83AD4 /* effects */,
@@ -159,6 +185,15 @@
 			path = iCarousel;
 			sourceTree = "<group>";
 		};
+		F25F959CEF330942B89124A5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C91B1A1DDB0A8FE96D0CA0D1 /* Pods-BanubaAgoraFilters.debug.xcconfig */,
+				7307728837A1CC331A93FDE5 /* Pods-BanubaAgoraFilters.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -178,11 +213,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 637C19C826A6EEAE000C647F /* Build configuration list for PBXNativeTarget "BanubaAgoraFilters" */;
 			buildPhases = (
+				94DFDB5529A7D851CBA9497D /* [CP] Check Pods Manifest.lock */,
 				637C1A0F26A82E2E000C647F /* Headers */,
 				637C19B026A6EEAB000C647F /* Sources */,
 				637C19B126A6EEAB000C647F /* Frameworks */,
 				637C19B226A6EEAB000C647F /* Resources */,
 				63EAAEA326DE824D00A83AD4 /* Embed Frameworks */,
+				6FAC9CEE241A597A34DF2462 /* [CP] Embed Pods Frameworks */,
+				D2509CD2BCA68A876B67DB2F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -190,7 +228,18 @@
 			);
 			name = BanubaAgoraFilters;
 			packageProductDependencies = (
-				F355FC1A2733E6EB0056A8D9 /* AgoraRtcKit */,
+				F3C0184427EA28B300F3A9E5 /* VoicemodAudioFilterExtension */,
+				F350E54F28E34957009E99D4 /* AgoraUIKit */,
+				F3C9A1C928F064C800772084 /* AINS */,
+				F3C9A1CB28F064C800772084 /* AudioBeauty */,
+				F3C9A1CD28F064C800772084 /* ClearVision */,
+				F3C9A1CF28F064C800772084 /* ContentInspect */,
+				F3C9A1D128F064C800772084 /* PVC */,
+				F3C9A1D328F064C800772084 /* ReplayKit */,
+				F3C9A1D528F064C800772084 /* RtcBasic */,
+				F3C9A1D728F064C800772084 /* SpatialAudio */,
+				F3C9A1D928F064C800772084 /* SuperResolution */,
+				F3C9A1DB28F064C800772084 /* VirtualBackground */,
 			);
 			productName = BanubaAgoraFilters;
 			productReference = 637C19B426A6EEAB000C647F /* BanubaAgoraFilters.app */;
@@ -221,7 +270,9 @@
 			);
 			mainGroup = 637C19AB26A6EEAB000C647F;
 			packageReferences = (
-				F355FC192733E6EB0056A8D9 /* XCRemoteSwiftPackageReference "AgoraRtcEngine_iOS_Preview" */,
+				F3C0184327EA28B300F3A9E5 /* XCRemoteSwiftPackageReference "Extension-Voicemod-iOS" */,
+				F350E54E28E34957009E99D4 /* XCRemoteSwiftPackageReference "VideoUIKit-iOS" */,
+				F3C9A1C828F064C800772084 /* XCRemoteSwiftPackageReference "AgoraRtcEngine_iOS" */,
 			);
 			productRefGroup = 637C19B526A6EEAB000C647F /* Products */;
 			projectDirPath = "";
@@ -249,12 +300,72 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		6FAC9CEE241A597A34DF2462 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BanubaAgoraFilters/Pods-BanubaAgoraFilters-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BanubaAgoraFilters/Pods-BanubaAgoraFilters-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BanubaAgoraFilters/Pods-BanubaAgoraFilters-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		94DFDB5529A7D851CBA9497D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BanubaAgoraFilters-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D2509CD2BCA68A876B67DB2F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BanubaAgoraFilters/Pods-BanubaAgoraFilters-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BanubaAgoraFilters/Pods-BanubaAgoraFilters-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BanubaAgoraFilters/Pods-BanubaAgoraFilters-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		637C19B026A6EEAB000C647F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				63EAB03A26DE830A00A83AD4 /* AppDelegate.swift in Sources */,
+				F3E0E02127C78B0C00FAAED0 /* ViewControllerUIKit.swift in Sources */,
 				63EAB1A326DE830B00A83AD4 /* Token.swift in Sources */,
 				63EAB03626DE830A00A83AD4 /* EffectsService.swift in Sources */,
 				63EAB03326DE830A00A83AD4 /* ViewController.swift in Sources */,
@@ -330,7 +441,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -385,7 +496,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -397,27 +508,32 @@
 		};
 		637C19C926A6EEAE000C647F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C91B1A1DDB0A8FE96D0CA0D1 /* Pods-BanubaAgoraFilters.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
-				DEVELOPMENT_TEAM = 8W9QCBMQCU;
+				CURRENT_PROJECT_VERSION = 10;
+				DEVELOPMENT_TEAM = 278494H572;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = BanubaAgoraFilters/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.0;
 				OTHER_LDFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.banuba.BanubaAgoraFilters.sample;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.rocketar.BanubaAgoraFilters.sample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "BanubaAgoraFilters/BanubaAgoraFilters-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -427,27 +543,32 @@
 		};
 		637C19CA26A6EEAE000C647F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7307728837A1CC331A93FDE5 /* Pods-BanubaAgoraFilters.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
-				DEVELOPMENT_TEAM = 8W9QCBMQCU;
+				CURRENT_PROJECT_VERSION = 10;
+				DEVELOPMENT_TEAM = 278494H572;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = BanubaAgoraFilters/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.0;
 				OTHER_LDFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.banuba.BanubaAgoraFilters.sample;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.rocketar.BanubaAgoraFilters.sample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "BanubaAgoraFilters/BanubaAgoraFilters-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -478,21 +599,92 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		F355FC192733E6EB0056A8D9 /* XCRemoteSwiftPackageReference "AgoraRtcEngine_iOS_Preview" */ = {
+		F350E54E28E34957009E99D4 /* XCRemoteSwiftPackageReference "VideoUIKit-iOS" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/agorabuilder/AgoraRtcEngine_iOS_Preview.git";
+			repositoryURL = "https://github.com/AgoraIO-Community/VideoUIKit-iOS";
+			requirement = {
+				kind = exactVersion;
+				version = 4.0.0;
+			};
+		};
+		F3C0184327EA28B300F3A9E5 /* XCRemoteSwiftPackageReference "Extension-Voicemod-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AgoraIO-Community/Extension-Voicemod-iOS";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = "4.0.0-preview.1";
+				minimumVersion = 0.1.2;
+			};
+		};
+		F3C9A1C828F064C800772084 /* XCRemoteSwiftPackageReference "AgoraRtcEngine_iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AgoraIO/AgoraRtcEngine_iOS";
+			requirement = {
+				kind = exactVersion;
+				version = 4.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		F355FC1A2733E6EB0056A8D9 /* AgoraRtcKit */ = {
+		F350E54F28E34957009E99D4 /* AgoraUIKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = F355FC192733E6EB0056A8D9 /* XCRemoteSwiftPackageReference "AgoraRtcEngine_iOS_Preview" */;
-			productName = AgoraRtcKit;
+			package = F350E54E28E34957009E99D4 /* XCRemoteSwiftPackageReference "VideoUIKit-iOS" */;
+			productName = AgoraUIKit;
+		};
+		F3C0184427EA28B300F3A9E5 /* VoicemodAudioFilterExtension */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F3C0184327EA28B300F3A9E5 /* XCRemoteSwiftPackageReference "Extension-Voicemod-iOS" */;
+			productName = VoicemodAudioFilterExtension;
+		};
+		F3C9A1C928F064C800772084 /* AINS */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F3C9A1C828F064C800772084 /* XCRemoteSwiftPackageReference "AgoraRtcEngine_iOS" */;
+			productName = AINS;
+		};
+		F3C9A1CB28F064C800772084 /* AudioBeauty */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F3C9A1C828F064C800772084 /* XCRemoteSwiftPackageReference "AgoraRtcEngine_iOS" */;
+			productName = AudioBeauty;
+		};
+		F3C9A1CD28F064C800772084 /* ClearVision */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F3C9A1C828F064C800772084 /* XCRemoteSwiftPackageReference "AgoraRtcEngine_iOS" */;
+			productName = ClearVision;
+		};
+		F3C9A1CF28F064C800772084 /* ContentInspect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F3C9A1C828F064C800772084 /* XCRemoteSwiftPackageReference "AgoraRtcEngine_iOS" */;
+			productName = ContentInspect;
+		};
+		F3C9A1D128F064C800772084 /* PVC */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F3C9A1C828F064C800772084 /* XCRemoteSwiftPackageReference "AgoraRtcEngine_iOS" */;
+			productName = PVC;
+		};
+		F3C9A1D328F064C800772084 /* ReplayKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F3C9A1C828F064C800772084 /* XCRemoteSwiftPackageReference "AgoraRtcEngine_iOS" */;
+			productName = ReplayKit;
+		};
+		F3C9A1D528F064C800772084 /* RtcBasic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F3C9A1C828F064C800772084 /* XCRemoteSwiftPackageReference "AgoraRtcEngine_iOS" */;
+			productName = RtcBasic;
+		};
+		F3C9A1D728F064C800772084 /* SpatialAudio */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F3C9A1C828F064C800772084 /* XCRemoteSwiftPackageReference "AgoraRtcEngine_iOS" */;
+			productName = SpatialAudio;
+		};
+		F3C9A1D928F064C800772084 /* SuperResolution */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F3C9A1C828F064C800772084 /* XCRemoteSwiftPackageReference "AgoraRtcEngine_iOS" */;
+			productName = SuperResolution;
+		};
+		F3C9A1DB28F064C800772084 /* VirtualBackground */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F3C9A1C828F064C800772084 /* XCRemoteSwiftPackageReference "AgoraRtcEngine_iOS" */;
+			productName = VirtualBackground;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

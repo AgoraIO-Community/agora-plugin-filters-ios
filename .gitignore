@@ -17,3 +17,7 @@ profile
 DerivedData
 *.hmap
 *.ipa
+xcshareddata/
+Podfile.lock
+*.xcworkspace
+Pods/
