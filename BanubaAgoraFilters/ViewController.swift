@@ -98,7 +98,7 @@ extension ViewController: AgoraRtcEngineDelegate {
   func rtcEngine(_ engine: AgoraRtcEngineKit, firstRemoteVideoFrameOfUid uid: UInt, size: CGSize, elapsed: Int) {
     setupRemoteVideo(uid: uid)
   }
-  
+
   private func setupRemoteVideo(uid: UInt) {
     let videoCanvas = AgoraRtcVideoCanvas()
     videoCanvas.uid = uid
@@ -194,7 +194,7 @@ extension ViewController {
       agoraKit?.setExtensionPropertyWithVendor(
         BanubaPluginKeys.vendorName,
         extension: BanubaPluginKeys.extensionName,
-        key: BanubaPluginKeys.callJSMethod,
+        key: BanubaPluginKeys.evalJSMethod,
         value: jsonString
       )
     } catch {

@@ -7,7 +7,7 @@
 
 import UIKit
 import AgoraRtcKit
-import AgoraUIKit_iOS
+import AgoraUIKit
 import BanubaFiltersAgoraExtension
 import AVKit
 
@@ -25,12 +25,13 @@ class ViewControllerUIKit: UIViewController {
     super.viewDidLoad()
 
     setupEngine()
-    setupEffectSelectorView()
   }
 
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     startAgora()
+    showVoiceOptions()
+    setupEffectSelectorView()
   }
 
   private func setupEngine() {
@@ -38,6 +39,7 @@ class ViewControllerUIKit: UIViewController {
     config.appId = AppKeys.agoraAppID
 
     var agSettings = AgoraSettings()
+    agSettings.videoRenderMode = .hidden
     agSettings.rtmEnabled = false
     agSettings.videoConfiguration = AgoraVideoEncoderConfiguration(
       size: Defaults.renderSize,
@@ -46,27 +48,31 @@ class ViewControllerUIKit: UIViewController {
       orientationMode: .adaptative,
       mirrorMode: .auto
     )
-    agSettings.enabledButtons = [.micButton]
-    agSettings.buttonPosition = .right
+    agSettings.enabledButtons = []
+//    agSettings.buttonPosition = .right
 
     self.agoraUIKit = AgoraVideoViewer(
       connectionData: AgoraConnectionData(
         appId: AppKeys.agoraAppID, rtcToken: AppKeys.agoraClientToken
       ), agoraSettings: agSettings, delegate: self
     )
+    self.agoraUIKit?.agkit.enableExtension(
+      withVendor: "Voicemod", extension: "VoicemodExtension", enabled: true
+    )
     self.agoraUIKit?.fills(view: self.view)
   }
 
-
   func startAgora() {
-    if Date().compare(Date(timeIntervalSince1970: 1648252800)) == .orderedDescending {
+    if Date().compare(Date(timeIntervalSince1970: 1666089215)) == .orderedDescending {
       let alert = UIAlertController(
         title: "App Expired!",
-        message: "This app was a demo of Banuba's extension," +
-                 "\nplease go to Agora.io to find out more",
+        message: "This app was an extension demo for RTE 2022." +
+                 "\nPlease go to Agora's Extensions Marketplace to find out more",
         preferredStyle: .alert)
-      alert.addAction(.init(title: "Go to Agora.io", style: .default, handler: { action in
-        UIApplication.shared.open(URL(string: "https://www.agora.io/en/")!)
+      alert.addAction(.init(title: "Go to Agora", style: .default, handler: { action in
+        UIApplication.shared.open(URL(
+            string: "https://www.agora.io/en/agora-extensions-marketplace/"
+        )!)
       }))
       self.present(alert, animated: true)
       return
@@ -94,6 +100,73 @@ class ViewControllerUIKit: UIViewController {
     }
   }
 
+  func registerVoicemod() {
+    // Set API Credentials
+    let dataDict = [
+      "apiKey": VoicemodSettings.voicemodApiKey,
+      "apiSecret": VoicemodSettings.voicemodApiSecret
+    ]
+    guard let encodedData = try? JSONEncoder().encode(dataDict),
+          let dataString = String(data: encodedData, encoding: .utf8)  else {
+        return
+    }
+    guard let setPropertyResp = self.agoraUIKit?.agkit
+            .setExtensionPropertyWithVendor(
+              "Voicemod", extension: "VoicemodExtension",
+              key: "vcmd_user_data", value: dataString
+            ), setPropertyResp == 0 else {
+      print("Could not set extension property")
+      return
+    }
+
+    let vmRtn = self.agoraUIKit?.agkit.setExtensionPropertyWithVendor(
+      "Voicemod", extension: "VoicemodExtension", key: "vcmd_background_sounds", value: "false"
+    )
+
+      print("vmRtn")
+      print(vmRtn)
+
+    VoicemodSettings.voicemodRegistered = true
+  }
+  var voicemodSegment: UISegmentedControl!
+  func showVoiceOptions() {
+    let controller = UISegmentedControl(items: VoicemodSettings.voices)
+    self.view.addSubview(controller)
+    controller.selectedSegmentIndex = 1
+    controller.addTarget(self, action: #selector(voiceModChanged(sender:)), for: .valueChanged)
+    //    controllerChanged(sender: controller)
+    controller.translatesAutoresizingMaskIntoConstraints = false
+    controller.bottomAnchor.constraint(
+      equalTo: self.view.safeAreaLayoutGuide.bottomAnchor,
+      constant: -10
+    ).isActive = true
+    controller.widthAnchor.constraint(
+      lessThanOrEqualTo: self.view.safeAreaLayoutGuide.widthAnchor).isActive = true
+    controller.centerXAnchor.constraint(
+      equalTo: self.view.safeAreaLayoutGuide.centerXAnchor).isActive = true
+    self.voicemodSegment = controller
+  }
+
+  @objc func voiceModChanged(sender: UISegmentedControl) {
+    if sender.selectedSegmentIndex == 0 {
+      self.agoraUIKit?.agkit.muteLocalAudioStream(true)
+      return
+    }
+    self.agoraUIKit?.agkit.muteLocalAudioStream(false)
+    if sender.selectedSegmentIndex == 1 {
+      self.agoraUIKit?.agkit.setExtensionPropertyWithVendor(
+        "Voicemod", extension: "VoicemodExtension", key: "vcmd_voice", value: "null"
+      )
+    } else {
+      if !VoicemodSettings.voicemodRegistered {
+        self.registerVoicemod()
+      }
+      self.agoraUIKit?.agkit.setExtensionPropertyWithVendor(
+        "Voicemod", extension: "VoicemodExtension",
+        key: "vcmd_voice", value: "\"\(VoicemodSettings.voices[sender.selectedSegmentIndex])\""
+      )
+    }
+  }
   private func joinChannel() {
     self.agoraUIKit?.enableExtension(
       withVendor: BanubaPluginKeys.vendorName,
@@ -129,7 +202,7 @@ extension ViewControllerUIKit {
     [ self.effectSelectorView.widthAnchor.constraint(
         equalTo: self.view.safeAreaLayoutGuide.widthAnchor
       ), self.effectSelectorView.bottomAnchor.constraint(
-        equalTo: self.view.safeAreaLayoutGuide.bottomAnchor
+        equalTo: self.voicemodSegment.topAnchor, constant: -10
       ), self.effectSelectorView.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor
       ), self.effectSelectorView.heightAnchor.constraint(equalToConstant: 64)
     ].forEach { $0.isActive = true }
